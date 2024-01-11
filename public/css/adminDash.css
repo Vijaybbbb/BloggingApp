@@ -377,3 +377,36 @@ body {
 ::-webkit-scrollbar-thumb:hover {
 	background-color: rgba(0, 0, 0, 0.3);
 }
+
+
+
+
+
+.chart-container {
+       background-color: black;
+       color: white; /* Optional: Set text color to white for better visibility */
+     }
+   
+     table {
+       width: 100%;
+       border-collapse: collapse;
+       margin-top: 10px; /* Optional: Add some margin for better spacing */
+     }
+   
+     th, td {
+       border: 1px solid white; /* Optional: Add border for better visibility */
+       padding: 8px;
+       text-align: left;
+     }
+   
+     th {
+       background-color: #333; /* Optional: Dark gray background for table headers */
+     }
+   
+     tr:nth-child(even) {
+       background-color: #555; /* Optional: Darker gray background for even rows */
+     }
+   
+     tr:nth-child(odd) {
+       background-color: #444; /* Optional: Dark gray background for odd rows */
+     }

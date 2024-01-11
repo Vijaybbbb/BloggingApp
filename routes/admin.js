@@ -6,13 +6,19 @@ const multer = require('multer')
 const User = require('../models/user')
 const PremiumBlog  = require('../models/premiumBlogs')
 const Comment = require('../models/comment')
+const Blog = require('../models/blog')
 const bodyParser = require('body-parser')
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 const { checkForAuthenticationCookie } = require('../middleware/authentication');
 const { createTokenForUser } = require('../services/authentication')
-const {signin,addBlog} = require('../controllers/admin')
+const {signin,addBlog,Dashboard} = require('../controllers/admin')
 
+
+
+router.get('/viewUser/:id',async(req,res)=>{
+      res.send('hkrbga')
+})
 
 
 //get admin signin Page 
@@ -21,11 +27,12 @@ router.get('/signin',signin)
 //get admin addBlog page 
 router.get("/adminAddBlog",addBlog)
 
-router.get('/home',async(req,res)=>{
-       const users = await User.find({})
-       console.log(users);
-       res.render('admin/adminHome',{users,search:''})  
-})
+//get admin Dashboard
+router.get('/home',Dashboard) 
+
+
+
+
 
 
 
@@ -43,7 +50,7 @@ const storage = multer.diskStorage({
  
 const upload = multer({storage:storage})
 
-router.post('/',upload.single('coverImage'),async (req,res)=>{
+router.post('/',upload.single('coverImage'),async  (req,res)=>{
        const {title , body } = req.body
        const blog = {
               body,
@@ -62,7 +69,6 @@ router.get('/:id',async (req,res)=>{
        
        const blog = await PremiumBlog.findById(req.params.id).populate("createdBy")
        const comments  = await Comment.find({blogId : req.params.id}).populate("createdBy")
-       console.log(comments);
        return res.render("admin/premiumBlogs",{
               user:req.user,
               title:blog.title,
@@ -117,4 +123,6 @@ router.post('/signin',async(req,res)=>{
 
 
 
-module.exports = router
+
+ 
+module.exports = router 
