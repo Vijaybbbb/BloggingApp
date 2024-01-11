@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <%- include('./partials/head') %>
+       <title>Signup Page</title>
+       <link rel="stylesheet" href="/css/signin.css">
+</head>
+<body>
+       <%- include('./partials/nav') %>
+
+       <div class="login-box">
+              <h2>Login</h2>
+              <form action="/user/signup" method="POST">
+                <div class="user-box">
+                     <input type="text" class="form-control" id="fullname" name='fullname' aria-describedby="emailHelp">
+                     <label>Full Name</label>
+                </div>
+                <div class="user-box">
+                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                     <label>Email Address</label>
+                </div>
+                <div class="user-box">
+                     <input type="password" class="form-control" id="password" name="password">
+                     <label>Password</label>
+                </div>
+                <a href="#">
+                     <button type="submit" style="background-color: transparent;border-width: 0cap;color: white;">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Submit</button>
+                </a>
+              </form>
+            </div>
+       <% if(locals.error) { %>
+              <div class="container mt-4">
+                     <div class="alert alert-danger" role="alert">
+                            <%= locals.error %>
+                      </div>
+              </div>
+        <% } %>
+         <%- include('./partials/scripts') %>
+</body>
+</html>

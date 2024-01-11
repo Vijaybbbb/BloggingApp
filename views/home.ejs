@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <%- include('./partials/head') %>
+       <title>Home Page</title>
+       <link rel="stylesheet" href="/css/home.css">
+     
+</head>
+<body>
+  
+  <%- include('./partials/nav') %>
+
+       <div class="container2 mt-3">
+        <div class="grid-container">
+          <% blogs.forEach(blog => { %>
+            <div class="card2">
+              <div class="card-header2">
+                <img src="<%= blog?.coverImageURL  %>" alt="" />
+              </div>
+              <div class="card-body2">
+                <a href="/blog/<%= blog._id %>" class="btn btn-primary">Click to Read</a><br><br>
+                <h4><%= blog?.title %></h4>
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur
+                  tenetur distinctio neque?
+                </p>
+                <div class="user2">
+                  <img src="" />
+                  <div class="user-info2">
+                    <h5> <%= blog.createdBy?.fullname %></h5>
+                    <small>2h ago</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      
+             
+            <%- include('./partials/scripts') %>
+</body>
+</html>

@@ -1,0 +1,99 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+       <%- include('./partials/head') %>
+       <title>Blog Page</title>
+       <link rel="stylesheet" href="/css/blogView.css">
+
+</head>
+<body>
+       <%- include('./partials/nav') %>
+       
+     <div class="container mt-4">
+           
+           <h2><%= title %></h2> <br>
+           <img src="<%= image %>" alt="" width="700px"> <br>
+           <div class="container mt-3 blogcontent" ><%= body %></div>
+       </div>
+       <div class="container mt-4">
+             
+       </div>
+
+       <!-- <div class="container mt-3">
+              <h3>Comment (<%= comments.length %>)</h3>
+             <% if(locals.user ){  %>
+              <form action="/blog/comment/<%= blog._id %>" method="POST">
+                    
+                     <div class="mb-3">
+                       <input type="text" 
+                            class="form-control" 
+                            placeholder="Enter Your Comment"
+                             name="content" 
+                             aria-describedby="emailHelp"
+                             required="true"
+                             >
+                     <button type="submit" class="btn btn-sm btn-primary">Add</button>
+               </form>
+               <% } %>   -->
+
+               <!-- <div class="mt-3">
+                     <% comments.forEach(comment => { %>
+                         <div >
+                             <img src="<%= userimage %>" alt="" width="100px">
+                             <%= comment.createdBy.fullname  %>
+                             <pre><%= comment.content %></pre>
+                         </div>
+                     <% }); %>
+              </div> -->
+              <!-- ... (previous HTML content) ... -->
+
+<div class="container mt-3">
+       <div class="comments-section">
+           <h3>Comments (<%= comments.length %>)</h3>
+   
+           <% if(locals.user ){  %>
+               <form action="/blog/comment/<%= blog._id %>" method="POST">
+                   <div class="mb-3">
+                       <input type="text" 
+                           class="form-control" 
+                           placeholder="Enter Your Comment"
+                           name="content" 
+                           aria-describedby="emailHelp"
+                           required="true"
+                       ><br>
+                       <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                   </div>
+               </form>
+           <% } %>  
+   
+           <div class="comment-list mt-3">
+               <% comments.forEach(comment => { %>
+                   <div class="comment">
+                       <!--<img src="<%= userimage %>" alt="" class="profile-pic">-->
+                       <img src="../public/images/user_icon.png" alt="" class="profile-pic">
+                       <div class="comment-content">
+                           <span class="commenter-name"><%= comment.createdBy.fullname  %></span>
+                           <pre><%= comment.content %></pre>
+                       </div>
+                   </div>
+               <% }); %>
+           </div>
+       </div>
+   </div>
+   
+   <!-- ... (remaining HTML content) ... -->
+   
+
+       </div>
+       
+          
+       <%- include('./partials/scripts') %>
+
+</body>
+</html> 
+
+
+
+
+
+

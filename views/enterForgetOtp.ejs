@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <%- include('./partials/head') %>
+       <title>Enter OTP</title>
+       <link rel="stylesheet" href="/css/otp.css">
+</head>
+<body>
+       <%- include('./partials/nav') %>
+    <form action="/user/confirmForgetOtp?email=<%= email %>" method="post">
+       <div class="login-box">
+              <h2>Forget Password</h2>
+              <div class="position-relative">
+                <div class="card p-2 text-center">
+                    <h6>Please enter the one time password <br> to verify your account</h6>
+                    <div> <span>A code has been sent to</span> <small id="emailText"><%= email %> </small> </div>
+                    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
+                        <input class="m-2 text-center form-control rounded" type="text" name="first" maxlength="1" /> 
+                        <input class="m-2 text-center form-control rounded" type="text" name="second" maxlength="1" />
+                         <input class="m-2 text-center form-control rounded" type="text" name="third" maxlength="1" /> 
+                         <input class="m-2 text-center form-control rounded" type="text" name="fourth" maxlength="1" /> 
+                         <input class="m-2 text-center form-control rounded" type="text" name="fifth" maxlength="1" />
+                          <input class="m-2 text-center form-control rounded" type="text" name="sixth" maxlength="1" /> </div>
+                    <div class="mt-4"> <button class="btn btn-danger px-4 validate" type="submit" id="submit">Validate</button>  
+                     <button class="btn btn-danger px-4 validate" id="resend" type="button" onclick="startOtpTimer(30,'resend')" disabled>Resend</button>
+                      </div>
+                      
+                </div>
+            </div>
+            </div>
+        
+       <% if(locals.errorMessage) { %>
+              <div class="container mt-4">
+                     <div class="alert alert-danger" role="alert">
+                            <%= locals.errorMessage %>
+                      </div>
+              </div>
+        <% } %>
+         <%- include('./partials/scripts') %>
+       
+       </form>
+</body>
+<script>
+       document.addEventListener("DOMContentLoaded", function(event) {
+
+function OTPInput() {
+const inputs = document.querySelectorAll('#otp > *[id]');
+for (let i = 0; i < inputs.length; i++) { inputs[i].addEventListener('keydown', function(event) { if (event.key==="Backspace" ) { inputs[i].value='' ; if (i !==0) inputs[i - 1].focus(); }
+ else { if (i===inputs.length - 1 && inputs[i].value !=='' ) { return true; } else if (event.keyCode> 47 && event.keyCode < 58) { inputs[i].value=event.key; if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); }
+  else if (event.keyCode> 64 && event.keyCode < 91) { inputs[i].value=String.fromCharCode(event.keyCode); if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } }); } } OTPInput(); });
+
+
+
+//resend button configuration
+
+
+function startOtpTimer(duration , displayElementId){
+
+let timer  = duration;
+const displayElement = document.getElementById(displayElementId)
+const countdownInterval = setInterval(function () {
+       const minutes = Math.floor(timer / 60);
+       const seconds = timer % 60;
+
+       displayElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+       if (--timer < 0) {
+              clearInterval(countdownInterval);
+              displayElement.textContent = "Resend OTP";
+              displayElement.disabled = false; // Enable the button after timer ends
+       }
+}, 1000);
+}
+
+startOtpTimer(30,'resend');
+
+//listening for a click in resend button
+
+document.getElementById('resend').addEventListener('click',()=>{
+       const email = document.getElementById('emailText').textContent
+       const data ={
+              email:email
+       }
+       console.log('fetching')
+fetch('/user/resendForgetOtp',{
+       
+       method: 'POST', // Use POST for sending data
+       headers: {
+              'Content-Type': 'application/json',
+       },
+       body: JSON.stringify(data)
+})
+.then(response => response.json())
+.catch((error) => {
+       console.error('Error:', error);
+});
+
+})
+
+
+
+</script>
+</html>
