@@ -34,7 +34,7 @@ router.get('/myBlogs', checkForAuthenticationCookie("tocken") , async (req, res)
 });
 
 
-const uploadDir = path.resolve('./BloggingApp/public/uploads/');
+const uploadDir = path.resolve('./public/uploads/');
 
 const storage = multer.diskStorage({
        destination:function(req,file,cb){

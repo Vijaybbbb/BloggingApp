@@ -13,21 +13,59 @@ router.use(bodyParser.urlencoded({ extended: true }));
 const { checkForAuthenticationCookie } = require('../middleware/authentication');
 const { createTokenForUser } = require('../services/authentication')
 const {signin,addBlog,Dashboard} = require('../controllers/admin')
+const session = require('express-session')
 
 
-
-router.get('/viewUser/:id',async(req,res)=>{
-      res.send('hkrbga')
+router.get('/viewUser',async(req,res)=>{ 
+       const id = req.query.id
+       const user = await User.findById({_id:id})
+       const blogs = await Blog.find({createdBy:id});
+       res.render("admin/viewUser",{
+              user:user,  
+              blogs:blogs,
+              search:''
+       })  
 })
 
+router.get('/userBlogs',async(req,res)=>{
+       try {
+              req.session.admin='admin'
+              if (req.session.admin) {
+                   var search="";
+                   if(req.query.search){ 
+                          search=req.query.search
+                          
+                   }
+                   
+                   const blogs = await Blog.find({ 
+                          
+                          $or:[
+                                 {title:{$regex: '.*'+ search +'.*'}},
+                                        
+                          ] 
+                   
+                  });
+                 
+                   res.render("admin/viewUser", { blogs: blogs , search:search});
+                  
+
+              } else {
+                res.redirect("/admin/home");
+              }
+            } catch (error) {
+              console.error("Error retrieving user data:", error);  
+              res.status(500).send("Internal server error"); 
+            }
+
+})
 
 //get admin signin Page 
-router.get('/signin',signin) 
+router.get('/signin',signin)  
 
 //get admin addBlog page 
 router.get("/adminAddBlog",addBlog)
 
-//get admin Dashboard
+//get admin Dashboardblogf
 router.get('/home',Dashboard) 
 
 
@@ -99,7 +137,7 @@ router.post('/signin',async(req,res)=>{
                             if(isPasswordMatch){
                            
                             const tocken  = createTokenForUser(adminFind)
-                            req.user = req.body.fullname;
+                            req.session.admin = req.body.fullname;
                             res.cookie('tocken',tocken).redirect('/home') 
                              }
                              else{

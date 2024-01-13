@@ -1,0 +1,51 @@
+.grid-container {
+       display: grid;
+       grid-template-columns: repeat(4, 1fr); /* Create 3 columns with equal width */
+       gap: 20px; /* Add some gap between the cards */
+     }
+     
+     .card2 {
+       border: 1px solid #ddd;
+       border-radius: 8px;
+       overflow: hidden;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       background-color: #919191;
+       height: 290px;
+       width: 166px;
+     }
+     
+     .card-header2 img {
+       width: 100%;
+       height: auto;
+     }
+     
+     .card-body2 {
+       padding: 20px;
+     }
+     
+     .tag {
+       display: inline-block;
+       padding: 4px 8px;
+       background-color: #4caf50; /* Teal color */
+       color: #fff;
+       border-radius: 4px;
+       margin-bottom: 10px;
+     }
+     
+     .tag-teal {
+       background-color: #92d4e4;
+     }
+
+.card-header2{
+
+}
+.btn{
+
+       font-size: 10px;
+       
+
+}
+h4{
+       font-size: 10px;
+}
+       
