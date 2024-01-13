@@ -52,6 +52,9 @@ app.get("/home",checkForAuthenticationCookie("tocken"),async (req,res)=>{
        })
        
 }) 
+app.get('/',(req,res)=>{
+       res.render('partials/landingPage')
+})
  
 
 app.use('/user',userRouter) 

@@ -18,6 +18,8 @@ const session = require('express-session')
 
 router.get('/viewUser',async(req,res)=>{ 
        const id = req.query.id
+       req.session.userID = id
+       
        const user = await User.findById({_id:id})
        const blogs = await Blog.find({createdBy:id});
        res.render("admin/viewUser",{
@@ -29,7 +31,7 @@ router.get('/viewUser',async(req,res)=>{
 
 router.get('/userBlogs',async(req,res)=>{
        try {
-              req.session.admin='admin'
+              req.session.admin='admin' 
               if (req.session.admin) {
                    var search="";
                    if(req.query.search){ 
@@ -37,24 +39,30 @@ router.get('/userBlogs',async(req,res)=>{
                           
                    }
                    
-                   const blogs = await Blog.find({ 
-                          
-                          $or:[
-                                 {title:{$regex: '.*'+ search +'.*'}},
-                                        
-                          ] 
-                   
-                  });
+                   const blogs = await Blog.find(
+                     {
+                         createdBy: req.session.userID,
+                         $or: [
+                             { title: { $regex: '.*' + search + '.*' } },
+                         ]
+                     }
+                 ).populate('createdBy');
                  
-                   res.render("admin/viewUser", { blogs: blogs , search:search});
+                 console.log(blogs);
+                     if(blogs){
+                            res.render("admin/viewUser", { blogs: blogs , search:search ,user:blogs[0].createdBy});
+                     }
+                     else{
+                            console.log("no blogs ");
+                     } 
                   
 
               } else {
-                res.redirect("/admin/home");
+                res.redirect("/admin/home"); 
               }
             } catch (error) {
-              console.error("Error retrieving user data:", error);  
-              res.status(500).send("Internal server error"); 
+              console.error("Error retrieving user data:", error);    
+              res.status(500).send("Internal server error");  
             }
 
 })
@@ -116,7 +124,7 @@ router.get('/:id',async (req,res)=>{
               username: blog.createdBy.fullname,
               blog:blog,
               comments
-       })
+       }) 
 
 })
 
