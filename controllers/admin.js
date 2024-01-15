@@ -3,6 +3,7 @@ const { checkForAuthenticationCookie } = require('../middleware/authentication')
 const User = require('../models/user')
 const Comment = require('../models/comment')
 const Blog = require('../models/blog')
+const PremiumBlog = require('../models/premiumBlogs')
 
 const signin = (req,res) =>{
        res.render('admin/adminSignin')
@@ -52,8 +53,7 @@ const userBlogs = async(req,res)=>{
                          ]
                      }
                  ).populate('createdBy');
-                 
-                 console.log(blogs);
+              
                      if(blogs){
                             res.render("admin/viewUser", { blogs: blogs , search:search ,user:blogs[0].createdBy});
                      }
@@ -97,6 +97,19 @@ const editBlog = async(req,res)=>{
        }) 
 }
 
+const createPremiumBlog = async(req,res)=>{
+       res.render('admin/createPremiumBlog')
+}
+
+const viewPremiumBlog = async(req,res) =>{
+       const id = req.query.id
+       const blog = await PremiumBlog.findById(id)
+       res.render('admin/ViewBlog',{
+              blog:blog,
+              
+       })
+}
+
 module.exports = {
        signin,
        addBlog,
@@ -105,5 +118,7 @@ module.exports = {
        userBlogs,
        viewBlog,
        deleteComment,
-       editBlog
+       editBlog,
+       createPremiumBlog,
+       viewPremiumBlog
 }

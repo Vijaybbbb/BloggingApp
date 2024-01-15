@@ -154,11 +154,11 @@ body {
  -- welcome
 -------------------------------- */
 .welcome {
-	color: var(--dk-gray-300);
+	color: black
 }
 
 .welcome .content {
-	background-color: var(--dk-dark-bg);
+	background:transparent
 }
 
 .welcome p {
@@ -176,9 +176,8 @@ body {
 }
 
 .statistics .box {
-	background-color: var(--dk-dark-bg);
-}
-
+	background-color: #ffffff;
+   }
 .statistics .box i {
 	width: 60px;
 	height: 60px;
@@ -196,7 +195,7 @@ body {
  -- Charts
 -------------------------------- */
 .charts .chart-container {
-	background-color: var(--dk-dark-bg);
+	background-color:white
 }
 
 .charts .chart-container h3 {
@@ -410,3 +409,12 @@ body {
      tr:nth-child(odd) {
        background-color: #444; /* Optional: Dark gray background for odd rows */
      }
+
+     .h3, h3 {
+	font-size: 1.75rem;
+	color: black;
+   }
+   .d-block {
+	display: block!important;
+	color: black;
+   }

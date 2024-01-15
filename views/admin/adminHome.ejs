@@ -31,92 +31,28 @@
         </div>
       
         <ul class="categories list-unstyled">
-          <li class="has-dropdown">
+          <li class="">
             <i class="uil-estate fa-fw"></i><a href="#"> Dashboard</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
           </li>
           <li class="">
-            <i class="uil-folder"></i><a href="#"> File manager</a>
+            <i class="uil-folder"></i><a href="#">All Blogs</a>
           </li>
-          <li class="has-dropdown">
-            <i class="uil-calendar-alt"></i><a href="#"> Calender</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
+          <li class="">
+            <i class="uil-calendar-alt"></i><a href="/admin/createPremiumBlog"> Create Premium Blogs</a>
           </li>
-          <li class="has-dropdown">
-            <i class="uil-envelope-download fa-fw"></i><a href="#"> Mailbox</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
+          <li class="">
+            <i class="uil-envelope-download fa-fw"></i><a href="#">Sales</a>
+          
           </li>
-          <li class="has-dropdown">
-            <i class="uil-shopping-cart-alt"></i><a href="#"> Ecommerce</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
-          </li>
-          <li class="has-dropdown">
-            <i class="uil-bag"></i><a href="#"> Projects</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
-          </li>
+          <li class="">
+            <i class="uil-shopping-cart-alt"></i><a href="#">others</a>
+           
+         
           <li class="">
             <i class="uil-setting"></i><a href="#"> Settings</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
+
           </li>
-          <li class="has-dropdown">
-            <i class="uil-chart-pie-alt"></i><a href="#"> Components</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
-          </li>
-          <li class="has-dropdown">
-            <i class="uil-panel-add"></i><a href="#"> Charts</a>
-            <ul class="sidebar-dropdown list-unstyled">
-              <li><a href="#">Lorem ipsum</a></li>
-              <li><a href="#">ipsum dolor</a></li>
-              <li><a href="#">dolor ipsum</a></li>
-              <li><a href="#">amet consectetur</a></li>
-              <li><a href="#">ipsum dolor sit</a></li>
-            </ul>
-          </li>
-          <li class="">
-            <i class="uil-map-marker"></i><a href="#"> Maps</a>
-          </li>
+         
         </ul>
       </aside>
       
@@ -215,7 +151,7 @@
           <section class="charts mt-4">
             <div class="chart-container p-3">
               
-                <form action="/admin/adminDash" method="get">
+                <form action="/admin/userBlogs" method="get">
                     <input type="text" placeholder="Search" name="search" id="Search" value="<%= search %>">
                     <button type="submit">Search</button>
                 </form>

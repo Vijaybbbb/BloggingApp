@@ -14,9 +14,13 @@ const blogSchema = new Schema({
               required : false
        },
        createdBy :{
-              type : Schema.Types.ObjectId,
-              ref:"user",
+              type : String,
+              default:"ADMIN",
               
+       },
+       has_access:{
+              type:Boolean,
+              default:false
        }
 },{timestamps:true}
 );

@@ -71,6 +71,7 @@ router.get('/:id',checkForAuthenticationCookie("tocken"),async (req,res)=>{
        
        const blog = await Blog.findById(req.params.id).populate("createdBy")
        const comments  = await Comment.find({blogId : req.params.id}).populate("createdBy")
+       console.log(comments);
        return res.render("blog",{
               user:req.user,
               title:blog.title,
@@ -90,9 +91,10 @@ router.post('/comment/:blogID',checkForAuthenticationCookie("tocken"),async (req
        const  comment = await Comment.create({
               content:req.body.content,
               blogId:req.params.blogID,
-              createdBy:req.user._id
+              createdBy:req.user._id 
               
        })
+
        return res.redirect(`/blog/${req.params.blogID}`)
 })
 

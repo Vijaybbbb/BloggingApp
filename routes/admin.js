@@ -19,16 +19,18 @@ const {signin,
        userBlogs,
        viewBlog,
        deleteComment,
-       editBlog
+       editBlog,
+       createPremiumBlog,
+       viewPremiumBlog
 
-} = require('../controllers/admin')
+} = require('../controllers/admin') 
 
 
 //get View User Page
 router.get('/viewUser',viewUser)
 
 //get UserBlogs
-router.get('/userBlogs',userBlogs)
+router.get('/userBlogs',userBlogs) 
 
 //get Single blog
 router.get('/viewBlog',viewBlog)
@@ -46,16 +48,18 @@ router.get("/adminAddBlog",addBlog)
 //get admin Dashboardblogf
 router.get('/home',Dashboard) 
 
-
+//get edit blog page
 router.get('/editBlog',editBlog)
 
+router.get('/createPremiumBlog',createPremiumBlog)
 
+router.get('/viewPremiumBlog',viewPremiumBlog)
 
 
 const uploadDir = path.resolve('./public/uploads/');
 
 const storage = multer.diskStorage({
-       destination:function(req,file,cb){
+       destination:function(req,file,cb){ 
               cb(null,uploadDir)
        }, 
        filename:function (req,file,cb){
@@ -130,7 +134,7 @@ router.post('/signin',async(req,res)=>{
        }
        catch(error){
               console.error("Error during login:", error);
-              res.status(500).send("Internal server error"); 
+              res.status(500).send("Internal server error");  
        }
 })
 
@@ -167,6 +171,37 @@ router.post('/editBlog',async(req,res)=>{
                      
                      }})
        res.redirect(`/admin/viewBlog?id=${data.id}`)
+})
+
+
+////-------------------------------
+
+const premiumUploadDir = path.resolve('./public/uploads/premium');
+
+const premiumStorage = multer.diskStorage({
+       destination:function(req,file,cb){
+              cb(null,premiumUploadDir)
+       }, 
+       filename:function (req,file,cb){
+              const filename = `${Date.now()}-${file.originalname}`
+              cb(null,filename)
+       }
+})
+
+const premiumUpload = multer({storage:premiumStorage})
+
+router.post('/createPremiumBlog',premiumUpload.single('coverImage'),async (req,res)=>{
+       const {title , body } = req.body
+       const blog = {
+              body,
+              title,
+              coverImageURL:`/uploads/premium/${req.file.filename}`
+       }
+      const card = await PremiumBlog.create(blog)
+      
+      return res.redirect(`/admin//viewPremiumBlog?id=${card._id}`) 
+       
+
 })
 
 
