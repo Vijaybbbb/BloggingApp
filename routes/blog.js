@@ -62,7 +62,7 @@ router.post('/',checkForAuthenticationCookie("tocken"),upload.single('coverImage
               coverImageURL:`/uploads/${req.file.filename}`
        }
       const card = await Blog.create(blog)
-      return res.redirect(`/blog/${card._id}`)
+      return res.redirect(`/blog/${card._id}`) 
        
 
 })
@@ -71,7 +71,6 @@ router.get('/:id',checkForAuthenticationCookie("tocken"),async (req,res)=>{
        
        const blog = await Blog.findById(req.params.id).populate("createdBy")
        const comments  = await Comment.find({blogId : req.params.id}).populate("createdBy")
-       console.log(comments);
        return res.render("blog",{
               user:req.user,
               title:blog.title,

@@ -12,63 +12,33 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 const { checkForAuthenticationCookie } = require('../middleware/authentication');
 const { createTokenForUser } = require('../services/authentication')
-const {signin,addBlog,Dashboard} = require('../controllers/admin')
-const session = require('express-session')
+const {signin,
+       addBlog,
+       Dashboard,
+       viewUser,
+       userBlogs,
+       viewBlog,
+       deleteComment,
+       editBlog
+
+} = require('../controllers/admin')
 
 
-router.get('/viewUser',async(req,res)=>{ 
-       const id = req.query.id
-       req.session.userID = id
-       
-       const user = await User.findById({_id:id})
-       const blogs = await Blog.find({createdBy:id});
-       res.render("admin/viewUser",{
-              user:user,  
-              blogs:blogs,
-              search:''
-       })  
-})
+//get View User Page
+router.get('/viewUser',viewUser)
 
-router.get('/userBlogs',async(req,res)=>{
-       try {
-              req.session.admin='admin' 
-              if (req.session.admin) {
-                   var search="";
-                   if(req.query.search){ 
-                          search=req.query.search
-                          
-                   }
-                   
-                   const blogs = await Blog.find(
-                     {
-                         createdBy: req.session.userID,
-                         $or: [
-                             { title: { $regex: '.*' + search + '.*' } },
-                         ]
-                     }
-                 ).populate('createdBy');
-                 
-                 console.log(blogs);
-                     if(blogs){
-                            res.render("admin/viewUser", { blogs: blogs , search:search ,user:blogs[0].createdBy});
-                     }
-                     else{
-                            console.log("no blogs ");
-                     } 
-                  
+//get UserBlogs
+router.get('/userBlogs',userBlogs)
 
-              } else {
-                res.redirect("/admin/home"); 
-              }
-            } catch (error) {
-              console.error("Error retrieving user data:", error);    
-              res.status(500).send("Internal server error");  
-            }
+//get Single blog
+router.get('/viewBlog',viewBlog)
 
-})
+//delete Comments
+router.get('/deleteComment',deleteComment) 
 
-//get admin signin Page 
-router.get('/signin',signin)  
+
+//get admin signin Page  
+router.get('/signin',signin)   
 
 //get admin addBlog page 
 router.get("/adminAddBlog",addBlog)
@@ -77,7 +47,7 @@ router.get("/adminAddBlog",addBlog)
 router.get('/home',Dashboard) 
 
 
-
+router.get('/editBlog',editBlog)
 
 
 
@@ -160,14 +130,44 @@ router.post('/signin',async(req,res)=>{
        }
        catch(error){
               console.error("Error during login:", error);
-              res.status(500).send("Internal server error");
+              res.status(500).send("Internal server error"); 
        }
 })
 
+// admin comments creations
+
+// router.post('/comment/:blogID',async (req,res)=>{
+       
+//        const  comment = await Comment.create({
+//               content:req.body.content,
+//               blogId:req.params.blogID,
+//               createdBy:"ADMIN"
+              
+//        })
+//        return res.redirect(`/blog/${req.params.blogID}`)
+// })
 
 
+//delete comments by Admin
 
 
+//edit Blog
+
+router.post('/editBlog',async(req,res)=>{
+     
+       const data = {
+               id:req.body.id,
+               title:req.body.title,
+               body:req.body.content
+       }
+       const userdata = await Blog.findByIdAndUpdate(
+              {_id:data.id},{$set:{
+                     title:data.title,
+                     body:data.body,
+                     
+                     }})
+       res.redirect(`/admin/viewBlog?id=${data.id}`)
+})
 
 
  

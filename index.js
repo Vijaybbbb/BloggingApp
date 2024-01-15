@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'./public')))
 
 connect.then(()=>{
-       console.log("Database connected Successfuly");
+       console.log("Database connected Successfuly");  
 })
 .catch(()=>{
        console.log("Failed to connect"); 

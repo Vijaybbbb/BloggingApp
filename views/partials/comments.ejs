@@ -1,0 +1,175 @@
+<html>
+       <style>
+              .heading {
+    color: #666666;
+    text-align: center;
+}
+body {
+  font-family: Arial, sans-serif;
+  color: #404040;
+  background-color: #eee;
+}
+.container {
+  width: 520px;
+  margin-top: 20px;
+}
+.button-group {
+  margin-bottom: 20px;
+}
+.counter {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+.posts {
+  clear: both;
+  list-style: none;
+  padding-left: 0;
+  width: 100%;
+  text-align: left;
+}
+.posts li {
+  background-color: #fff;
+  border: 1.5px solid #d8d8d8;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  min-height: 42px;
+  box-shadow:8px 8px 5px #888888;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+
+#Delete {
+  --bezier: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --edge-light: hsla(0, 0%, 50%, 0.8);
+  --text-light: rgba(255, 255, 255, 0.4);
+  --back-color: 240, 40%;
+
+  cursor: pointer;
+  padding: 0.7em 1em;
+  border-radius: 0.5em;
+  min-height: 2.4em;
+  min-width: 3em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  font-weight: bold;
+
+  background: linear-gradient(
+    140deg,
+    hsla(var(--back-color), 50%, 1) min(2em, 20%),
+    hsla(var(--back-color), 50%, 0.6) min(8em, 100%)
+  );
+  color: hsla(0, 0%, 90%);
+  border: 0;
+  box-shadow: inset 0.4px 1px 4px var(--edge-light);
+
+  transition: all 0.1s var(--bezier);
+}
+
+#Delete:hover {
+  --edge-light: hsla(0, 0%, 50%, 1);
+  text-shadow: 0px 0px 10px var(--text-light);
+  box-shadow: inset 0.4px 1px 4px var(--edge-light),
+    2px 4px 8px hsla(0, 0%, 0%, 0.295);
+  transform: scale(1.1);
+}
+
+#Delete:active {
+  --text-light: rgba(255, 255, 255, 1);
+
+  background: linear-gradient(
+    140deg,
+    hsla(var(--back-color), 50%, 1) min(2em, 20%),
+    hsla(var(--back-color), 50%, 0.6) min(8em, 100%)
+  );
+  box-shadow: inset 0.4px 1px 8px var(--edge-light),
+    0px 0px 8px hsla(var(--back-color), 50%, 0.6);
+  text-shadow: 0px 0px 20px var(--text-light);
+  color: hsla(0, 0%, 100%, 1);
+  letter-spacing: 0.1em;
+  transform: scale(1);
+}
+.comment {
+  position: relative;
+}
+
+#Delete {
+    position: absolute;
+    top: 44px;
+    right: 21px;
+    font-size: 8px;
+}
+
+       </style>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <link rel="stylesheet" href="/css/blogView.css">
+ <head>
+  <br><br>
+<h3 class="heading">Add A Comment Below </h3>
+<body>
+  <div class="container">
+    
+    <form action="/admin/comment/<%= blog._id %>" method="POST" > 
+      <div class="form-group">
+        <textarea class="form-control status-box" 
+                     rows="3" 
+                      placeholder="Enter your comment here..."
+                      name="content"
+                      required="true"
+                      ></textarea>  
+      </div>
+      <button type="submit" class="btn btn-primary">Post</button><br><br>
+    </form >
+    
+    <!-- <div class="comment-list mt-3">
+       <% comments.forEach(comment => { %>
+           <div class="comment">
+
+               <img src="../public/images/user_icon.png" alt="" class="profile-pic">
+               <div class="comment-content">
+                   <% if (comment.createdBy) { %>
+                       <h1 class="commenter-name"><%= comment.createdBy.fullname  %></h1><br>
+                   <% } %>
+                   <h2><%= comment.content %></h2>
+               </div>
+           </div>
+       <% }); %>
+   </div> -->
+   
+   <div class="comment-list mt-3">
+       <% comments.forEach(comment => { %>
+           <div class="comment">
+               <img src="../public/images/user_icon.png" alt="" class="profile-pic">
+               <div class="comment-content">
+                 
+                   <span class="commenter-name"><%= comment.createdBy.fullname  %></span>
+                   <pre><%= comment.content %> <a href="/admin/deleteComment?id=<%= comment._id %>" id="Delete">Delete</a></pre>
+             
+                  </div>
+           </div>
+       <% }); %>
+       </div>
+     </form>
+  
+    
+  
+</body>
+<script>
+      
+</script>
+</html>
