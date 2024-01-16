@@ -56,33 +56,33 @@ router.get('/createPremiumBlog',createPremiumBlog)
 router.get('/viewPremiumBlog',viewPremiumBlog)
 
 
-const uploadDir = path.resolve('./public/uploads/');
+// const uploadDir = path.resolve('./public/uploads/');
 
-const storage = multer.diskStorage({
-       destination:function(req,file,cb){ 
-              cb(null,uploadDir)
-       }, 
-       filename:function (req,file,cb){
-              const filename = `${Date.now()}-${file.originalname}`
-              cb(null,filename)
-       }
-})
+// const storage = multer.diskStorage({
+//        destination:function(req,file,cb){ 
+//               cb(null,uploadDir)
+//        }, 
+//        filename:function (req,file,cb){
+//               const filename = `${Date.now()}-${file.originalname}`
+//               cb(null,filename)
+//        }
+// })
  
-const upload = multer({storage:storage})
+// const upload = multer({storage:storage})
 
-router.post('/',upload.single('coverImage'),async  (req,res)=>{
-       const {title , body } = req.body
-       const blog = {
-              body,
-              title,
-              createdBy:req.user._id,
-              coverImageURL:`/uploads/${req.file.filename}`
-       }
-      const card = await PremiumBlog.create(blog)
-      return res.redirect(`/premium/${card._id}`)
+// router.post('/',upload.single('coverImage'),async  (req,res)=>{
+//        const {title , body } = req.body
+//        const blog = {
+//               body,
+//               title,
+//               createdBy:req.user._id,
+//               coverImageURL:`/uploads/${req.file.filename}`
+//        }
+//       const card = await PremiumBlog.create(blog)
+//       return res.redirect(`/premium/${card._id}`)
        
 
-})
+// })
 
 
 router.get('/:id',async (req,res)=>{
@@ -199,7 +199,7 @@ router.post('/createPremiumBlog',premiumUpload.single('coverImage'),async (req,r
        }
       const card = await PremiumBlog.create(blog)
       
-      return res.redirect(`/admin//viewPremiumBlog?id=${card._id}`) 
+      return res.redirect(`/admin/viewPremiumBlog`) 
        
 
 })

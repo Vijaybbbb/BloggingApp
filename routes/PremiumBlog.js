@@ -11,10 +11,9 @@ const { checkForAuthenticationCookie } = require('../middleware/authentication')
 
 
 router.get("/home",checkForAuthenticationCookie("tocken"),async (req,res)=>{
-  const allBlogs = await Blog.find({}).populate("createdBy")
-  res.render('premium/premiumHome',{
-         user:req.user,  
-         blogs:allBlogs,
+  const blog = await premiumBlog.find({})
+  res.render('premiumBlogs',{
+         blogs:blog,
          
   })
 

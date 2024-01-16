@@ -102,10 +102,10 @@ const createPremiumBlog = async(req,res)=>{
 }
 
 const viewPremiumBlog = async(req,res) =>{
-       const id = req.query.id
-       const blog = await PremiumBlog.findById(id)
-       res.render('admin/ViewBlog',{
-              blog:blog,
+     
+       const blog = await PremiumBlog.find({})
+       res.render('admin/premiumBlogHome',{
+              blogs:blog,
               
        })
 }
