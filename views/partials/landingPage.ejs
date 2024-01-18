@@ -38,7 +38,7 @@
             <nav class="navbar-expand-lg navbar-dark">
 
                 <div class="container">
-                    <a href="#" class="navbar-brand">Flicker's BLog</a>
+                    <a href="#" class="navbar-brand">Blogify</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
                         <ul class="navbar-nav ml-auto">
 
                             <li class="nav-item active">
-                                <a href="#" class="nav-link">Home</a>
+                                <a href="/home" class="nav-link">Home</a>
                             </li>
 
                             <li class="nav-item active">
@@ -56,11 +56,11 @@
                             </li>
 
                             <li class="nav-item active">
-                                <a href="#" class="nav-link">Sign IN</a>
+                                <a href="/user/signin" class="nav-link">Sign IN</a>
                             </li>
 
                             <li class="nav-item active">
-                                <a href="#" class="nav-link">Sign UP</a>
+                                <a href="/user/signup" class="nav-link">Sign UP</a>
                             </li>
                         </ul>
                     </div>
@@ -102,16 +102,16 @@
             <div class="title">Categories</div>
             <div class="row">
                 <div class="card card_1">
-                    <a href="#">Backend</a>
+                    <a href="#">Food</a>
                 </div>
                 <div class="card card_2">
-                    <a href="#">Frontend</a>
+                    <a href="#">Technology</a>
                 </div>
                 <div class="card card_3">
-                    <a href="#">Marketing</a>
+                    <a href="#">Science</a>
                 </div>
                 <div class="card card_4">
-                    <a href="#">Server</a>
+                    <a href="#">Economy</a>
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
                 <a href="#">Sign Up</a>
             </div> -->
             <div class="alert card3" role="alert">
-               <h3> For write BLoG jsut <a href="#" class="alert-link">SignUp</a></h3>
+               <h3> For write BLoG jsut <a href="/user/signup" class="alert-link">SignUp</a></h3>
               </div>
 
         </div>
@@ -140,98 +140,36 @@
 <!-- post are started from hare  -->
 
     <section class="post" id="post">
-         <div class="title">Recent Post</div>
-        <div class="container container_5">
-
-         <div class="card mb-3 " style="max-width: 540px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="...">
+        <div class="container">
+            <div class="grid-container">
+              <% blogs.forEach(blog => { %>
+                <div class="card">
+                  <div class="card__header">
+                    <img src="<%= blog?.coverImageURL  %>" alt="card__image" class="card__image" width="543">
+                  </div>
+                  <div class="card__body">
+                    <br><br>
+                    <h4><%= blog?.title %></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+                  </div>
+                  <div class="card__footer">
+                    <div class="user">
+                      <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
+                      <div class="user__info">
+                        <h5><%= blog.createdBy.fullname %></h5>
+                        <small>2h ago</small>
+                      </div> 
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text "><small class="text-muted" id="author">Author: Raj sharma</small></p>
-                    <p class="card-text"><small class="text-muted">Date : 03/09/2021</small></p>      
-                    <a href="#" class="btn btn-primary">Learn More</a>              
-                </div>
-                </div>
-                </div>
+              <% }); %>
             </div>
-
-            <!-- <div class="card mb-3 " style="max-width: 540px;">
-                <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="./images//heroheader.png" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text "><small class="text-muted">Author: Raj sharma</small></p>
-                    <p class="card-text"><small class="text-muted">Date : 03/09/2021</small></p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-                </div>
-                </div>
-            </div> -->
+          </div>
+         
 
         </div>
         
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col">
-                  <div class="card">
-                    <img src="https://images.pexels.com/photos/930530/pexels-photo-930530.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <a href="#" class="btn btn-primary">Learn More</a>
-
-                      
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card">
-                    <img src="https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <a href="#" class="btn btn-primary">Learn More</a>
-
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card">
-                    <img src="https://images.pexels.com/photos/1999463/pexels-photo-1999463.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                                                <a href="#" class="btn btn-primary">Learn More</a>
-
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card">
-                    <img src="https://images.pexels.com/photos/2343475/pexels-photo-2343475.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                <a href="#" class="btn btn-primary">Learn More</a>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
+        
     </section>
 
     </div>

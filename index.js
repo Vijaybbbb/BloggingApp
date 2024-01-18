@@ -52,8 +52,11 @@ app.get("/home",checkForAuthenticationCookie("tocken"),async (req,res)=>{
        })
        
 }) 
-app.get('/',(req,res)=>{
-       res.render('partials/landingPage')
+app.get('/',async(req,res)=>{
+       const allBlogs = await Blog.find({}).populate("createdBy")
+       res.render('partials/landingPage',{
+              blogs:allBlogs
+       })
 })
  
 

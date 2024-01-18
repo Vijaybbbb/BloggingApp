@@ -5,6 +5,10 @@ const blogSchema = new Schema({
               type : String,
               required : true
        },
+       subTitle : {
+              type : String,
+              required : true
+       },
        body :{
               type : String,
               required : true

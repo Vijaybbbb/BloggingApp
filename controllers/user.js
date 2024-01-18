@@ -40,6 +40,12 @@ const enterForgetOtp = (req,res)=>{
        let errorMessage = req.session.errorMessage
        res.render('enterForgetOtp',{ message: '', errorMessage:errorMessage, email: email })
 }
+
+const myCart = (req,res)=>{
+       res.render('myCart')
+}
+
+
 module.exports = {
        signin,
        signup,
@@ -47,5 +53,6 @@ module.exports = {
        otpVerify,
        forgetpass,
        enterNewPass,
-       enterForgetOtp
+       enterForgetOtp,
+       myCart
 }

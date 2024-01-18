@@ -18,7 +18,8 @@ const  {
        otpVerify,
        forgetpass,
        enterNewPass,
-       enterForgetOtp
+       enterForgetOtp,
+       myCart
 }   = require('../controllers/user')
 
 router.use(bodyParser.json());
@@ -43,6 +44,8 @@ router.get('/enterForgetOtp',enterForgetOtp)
 router.get('/forgetPassword',forgetpass)
 
 router.get('/enterNewPass',enterNewPass)
+
+router.get('/myCart',myCart)
 
 router.post('/signup', async (req,res)=>{
       const { fullname , email , password } = req.body;
@@ -300,5 +303,10 @@ router.post('/setNewPasswordLogout',async(req,res)=>{
        }
 
 })
+
+
+
+
+
 
 module.exports = router

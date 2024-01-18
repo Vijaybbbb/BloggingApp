@@ -49,8 +49,9 @@
    </style>
 </head>
 <body>
+  
   <%- include('./partials/nav') %>
-
+  <form action="/premium/addToCart" method="post" >
   <div class="container">
     <div class="grid-container">
       <% blogs.forEach(blog => { %>
@@ -62,6 +63,8 @@
           </div>
           <div class="card__body">
             <span class="tag tag-blue">Technology</span>
+            
+            
             <h4><%= blog?.title %></h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
           </div><br><br><br>
@@ -74,12 +77,19 @@
               </div> 
             </div>
           </div>
-          <button class="add-to-cart-button">Add to Cart</button>
+          <button class="add-to-cart-button" type="submit" name="blogId" value="<%= blog._id %>" >Add to Cart</button>
         </div>
       <% }); %>
     </div>
   </div>
-
+</form>
   <%- include('./partials/scripts') %>
 </body>
+
+
+<script>
+  function alert(){
+    alert('added To Cart')
+  }
+</script>
 </html>

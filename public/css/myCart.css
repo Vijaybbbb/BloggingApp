@@ -1,0 +1,459 @@
+.checkout {
+  color: #3a3a3a;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  .checkout-container {
+    max-width: 1150px;
+    margin: 0 auto;
+    a {
+      text-decoration: none;
+    }
+    button {
+      min-width: 150px;
+      padding: 8px 0;
+      border: 0;
+      border-radius: 7px;
+      i {
+        margin-right: 7px;
+      }
+    }
+    .black-button {
+      background: #000;
+      color: #ffffff;
+    }
+    .bold-text {
+      font-weight: 700;
+    }
+    .p-small {
+      font-size: 12px;
+      @media screen and (min-width: 768px) {
+        font-size: 13px;
+      }
+    }
+    .blue-bg {
+      background: #3b5998;
+      color: #fff;
+    }
+    .red-bg {
+      background: #d32f2f;
+      color: #fff;
+    }
+    .red-text {
+      color: #d32f2f;
+    }
+  }
+  .checkout-order {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .checkout-title-icon {
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  .checkout-title-notice {
+    padding: 15px;
+    background: #f1f1f1;
+  }
+  .checkout-title-form {
+    margin-top: 15px;
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+  }
+  .checkout-form-inner {
+    padding: 20px;
+  }
+  .checkout-form-description {
+    margin-bottom: 15px;
+  }
+  .checkout-form-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .checkout-form-col {
+    width: 100%;
+    margin-bottom: 10px;
+    @media screen and (min-width: 768px) {
+      width: calc(50% - 10px);
+      margin-bottom: 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px 0 10px 15px;
+      box-sizing: border-box;
+      border: 1px solid #f1f1f1;
+    }
+  }
+  .checkout-social {
+    margin-bottom: 15px;
+  }
+  .checkout-social-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    position: relative;
+    &.red-bg {
+      margin-left: 5px;
+    }
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 18px;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+  .checkout-social-title {
+    margin-bottom: 5px;
+    display: block;
+  }
+  .checkout-form-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @media screen and (min-width: 768px) {
+      justify-content: normal;
+    }
+  }
+  .checkout-button {
+    display: block;
+    width: 100%;
+    &.login-button {
+      order: 2;
+    @media screen and (min-width: 768px) {
+      width: auto;
+      display: inline-block;
+    }
+    }
+    button {
+      width: 100%;
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+    }
+  }
+  .checkout-link {
+    margin-top: 8px;
+    margin-left: 10px;
+    line-height: 2;
+    text-decoration: none;
+    order: 3;
+    @media screen and (min-width: 768px) {
+      margin-top: 0;
+      order: 2;
+    }
+  }
+  .checkout-checkbox {
+    margin-top: 10px;
+    display: inline-block;
+    order: 2;
+    @media screen and (min-width: 768px) {
+      width: 100%;
+      display: block;
+      order: 3;
+    }
+  }
+  .checkout-col-inner {
+    padding: 15px 0;
+    border: 1px solid #dfdada;
+    border-radius: 4px;
+    &.bill-credit-inner {
+      border-bottom: 0;
+    }
+   
+  }
+  .checkout-col {
+    &.order-col {
+      width: 100%;
+      @media screen and (min-width: 1024px) {
+        width: calc(30% - 5px);
+      }
+    }
+    &.bill-col {
+      width: 100%;
+      @media screen and (min-width: 1024px) {
+        width: calc(35% - 5px);
+      }
+    }
+    &.payment-col {
+      width: 100%;
+      @media screen and (min-width: 1024px) {
+        width: calc(30% - 5px);
+      }
+    }
+    
+  }
+  .checkout-col-header {
+    padding: 0 15px;
+    margin-bottom: 10px;
+    .checkout-button {
+      width: 100%;
+    }
+  }
+  .checkout-order-info {
+    padding: 0 15px;
+    
+  }
+  .order-row {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    span {
+      display: inline-block;
+    }
+    .order-icon {
+      font-size: 20px;
+    }
+    .order-img {
+      width: 50%;
+      height: auto;
+    }
+    .order-product-name {
+      width: 75%;
+    }
+    .order-product-price {
+      width: 25%;
+    }
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .order-payment-col  {
+    width: 50%;
+  }
+  .order-card {
+    padding: 20px 0;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  .order-card-plan, .checkout-order-discount {
+    padding: 15px 10px;
+  }
+  .gray-bg {
+    background: #f1f1f1;
+  }
+  .order-plan-row {
+    margin-bottom: 3px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .order-plan-detail {
+    margin-left: 3px;
+  }
+  .order-card-bill {
+    padding: 15px 0;
+  }
+  .order-bill-row {
+    span {
+      display: block;
+      margin-bottom: 3px;
+    }
+  }
+  .order-discount-form {
+    margin-bottom: 10px;
+  }
+  .checkout-order-note {
+    padding: 15px;
+    border: 1px solid #f1f1f1;
+  }
+  input.checkout-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #dfdada;
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+      box-sizing: border-box;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      &::placeholder {
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+      }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    }
+  .order-note-title {
+    display: block;
+    margin-bottom: 15px;
+  }
+  .order-textarera {
+    width: 100%;
+    padding: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    border: 1px solid #dfdada;
+    box-sizing: border-box;
+    &::placeholder {
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+    }
+  }
+  .checkout-select {
+    width: 100%;
+    padding: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    border: 1px solid #dfdada;
+    box-sizing: border-box;
+  }
+  .checkout-bill-form {
+    padding: 0 10px;
+  }
+  .bill-small-col {
+    display: inline-block;
+    width: calc(50% - 5px);
+  }
+  .bill-full-col {
+    display: block;
+    width: 100%;
+  }
+  .bill-col-inner {
+    padding: 0 10px;
+  }
+  .checkout-bill-credit {
+    padding: 20px 0;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dfdada;
+  }
+  .bill-credit-title {
+    display: inline-block;
+    margin-left: 5px;
+  }
+  .checkout-col-bottom {
+    margin-bottom: 20px;
+  }
+  .checkout-col-headline {
+    position: relative;
+    i {
+      position: absolute;
+      font-size: 24px;
+      right: 5px;
+      @media screen and (min-width: 1024px) {
+        display: none;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.checkout {
+  background-color: #fff;
+  padding: 20px;
+}
+
+.checkout-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.checkout-order {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.order-img {
+  max-width: 100px;
+  max-height: 100px;
+  margin-right: 10px;
+}
+
+.checkout-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.black-button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.bill-credit-inner,
+.bill-col-inner {
+  margin-bottom: 20px;
+}
+
+.order-discount-form {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.order-discount-form input {
+  flex: 1;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.red-bg {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.gray-bg {
+  background-color: #f5f5f5;
+}
+
+/* Media Query for mobile responsiveness */
+@media (max-width: 768px) {
+  .checkout-order {
+      flex-direction: column;
+  }
+
+  .checkout-col {
+      margin-right: 0;
+      margin-bottom: 20px;
+  }
+}
