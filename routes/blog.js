@@ -54,10 +54,11 @@ router.get('/addnew',checkForAuthenticationCookie("tocken"),(req,res)=>{
        })
 })
 router.post('/',checkForAuthenticationCookie("tocken"),upload.single('coverImage'),async (req,res)=>{
-       const {title ,subTitle, body } = req.body
+       const {title ,subTitle, selectBox , body } = req.body
        const blog = {
               body,
               title,
+              type:selectBox
               subTitle,
               createdBy:req.user._id,
               coverImageURL:`/uploads/${req.file.filename}`
