@@ -24,40 +24,42 @@
             </div>
           </div>
           <div class="checkout-order-info">
+            
+           <% carts.forEach(cart => { %>
             <div class="order-card">
               <div class="order-row order-headline">
-                <span class="bold-text">Product</span>
+                <span class="bold-text"><%= cart.title  %></span>
                 <span class="bold-text">Payment Today</span>
               </div>
               <div class="order-row order-detail">
-                <img class="order-img" src="" alt="lwejd">
+                <img class="order-img" src="<%= cart.coverImageURL %>" alt="lwejd">
                 <i class="order-icon red-text fa fa-close"></i>
               </div>
               <div class="order-row">
-                <span class="order-product-name red-text bold-text">Accounting Certificate</span>
-                <span class="order-product-price text-right">$1,450.00</span>
+                <span class="order-product-name red-text bold-text">Payable Amount</span>
+                <span class="order-product-price text-right">$2450.00</span>
               </div>
+              
               <div class="order-row">
-                <span class="order-payment-col order-payment-type bold-text">Payment Type</span>
-                <span class="order-payment-col order-payment-info text-left">Pay Upfront</span>
-              </div>
-              <div class="order-row">
-                <span class="order-payment-col order-payment-type bold-text">Start Date</span>
-                <span class="order-payment-col order-payment-info text-left">Anytime</span>
+                <span class="order-payment-col order-payment-type bold-text"> <%= cart.blogId  %></span>
+                <a href="/premium/removeCartProduct?userId=<%= userId %>&id=<%= cart._id %>"> Remove</a>
+                
               </div>
             </div>
-            
+            <% }); %>
+
+
             <div class="order-card-bill">
               <span class="order-bill-row">
-              <span class="order-bill-sub text-right">Subtotal: $1.00</span>
-              <span class="order-bill-total text-right bold-text">Total: $1.00</span>
+              <span class="order-bill-sub text-right">Subtotal: $0.00</span>
+              <span class="order-bill-total text-right bold-text">Total: $0.00</span>
             </div>
 
             <div class="checkout-order-discount gray-bg">
               <form class="order-discount-form">
                 <input class="checkout-input" placeholder="Discount Code" />
               </form>
-              <button class="black-button bold-text">Apply</button>
+              <button class="black-button bold-text">Apply</button>   <button class="black-button bold-text">Proceed To Payment</button>
             </div>
           </div>
         </div>
@@ -71,80 +73,43 @@
       </div>
         
      
-     <div class="checkout-col bill-col">
-        <h3 class="checkout-col-headline">Payment Details
-          <i class="checkout-icon fa fa-angle-up"></i></h3> 
-          
-        <div class="checkout-col-inner checkout-col-bottom gray-bg">
-          <div class="bill-credit-inner gray-bg">
-            <div class="checkout-bill-credit">
-              <input type="radio" /><span class="bold-text bill-credit-title">Credit Card</span>
-            </div>
-          </div>
-          <div class="bill-col-inner">
-          <div class="order-row">
-              <span class="bill-full-col">
-                <label class="bold-text p-small">Card numbers</label>
-                <input class="checkout-input" type="text" />
-              </span>
-              </div>
-            
-            <div class="order-row">
-              <span class="bill-small-col">
-                <label class="bold-text p-small" for="first-name">Expiration Date</label>
-                <input class="checkout-input" type="text" />
-              </span>
-              <span class="bill-small-col">
-                <label class="bold-text p-small" for="last-name">CVV</label>
-                <input class="checkout-input" type="text" />
-              </span>
-              </div>
-            <div class="order-row">
-              <span class="bill-full-col">
-                <label class="bold-text p-small">Name on Card</label>
-                <input class="checkout-input" type="text" />
-              </span>
-              </div>
-            <div class="order-row">
-              <span class="bill-full-col">
-                <input type="checkbox">Remember for next time?
-              </span>
-              </div>
-            <div class="order-row">
-              <div class="checkout-button">
-                <button class="black-button bold-text red-bg">Place Order</button>
-              </div>
-              </div
-              <div class="checkout-title-notice">
-        <span class="checkout-title-text p-small">By completing your purchase, you agree to these </span>
-        <a href="#" class="checkout-title-text red-text p-small">Terms and Conditions</a>
-      </div>
-          </div>
-          <div class="checkout-col-inner ">
-          <div class="bill-credit-inner">
-            <div class="checkout-bill-credit">
-              <input type="radio" /><span class="bold-text bill-credit-title">PayPal</span>
-            </div>
-          </div>
-          <div class="bill-col-inner">
-            <div class="order-row">
-              <div class="checkout-button">
-                <button class="black-button bold-text red-bg">Proceed to Paypal</button>
-              </div>
-              </div
-              <div class="checkout-title-notice">
-                  <span class="checkout-title-text p-small">By completing your purchase, you agree to these </span>
-                    <a href="#" class="checkout-title-text red-text p-small">Terms and Conditions</a>
-           </div>
-          </div>
-          </div>
-        </div>
-      </div>
+    
+
+
     </div>
   </div>
 </div>
 </div>
 </form>
 </body>
+
+<script>
+  function calculateTotalPrice() {
+      // Get all elements with class 'order-product-price'
+      const productPriceElements = document.querySelectorAll('.order-product-price');
+
+      let subtotal = 0;
+
+      // Loop through each product price element and add its value to subtotal
+      productPriceElements.forEach(element => {
+          const priceText = element.textContent.trim().replace('$', ''); // Remove '$' and trim any whitespace
+          const price = parseFloat(priceText);
+          if (!isNaN(price)) {
+              subtotal += price;
+          }
+      });
+      
+      // Update subtotal in the HTML
+      const subtotalElement = document.querySelector('.order-bill-sub');
+      subtotalElement.textContent = `Subtotal: $${subtotal.toFixed(2)}`;
+
+      // Calculate and update total
+      const totalElement = document.querySelector('.order-bill-total');
+      totalElement.textContent = `Total: $${subtotal.toFixed(2)}`;
+  }
+
+  // Call the function to calculate the total initially
+  calculateTotalPrice();
+</script>
 
 </html>

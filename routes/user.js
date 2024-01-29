@@ -19,7 +19,9 @@ const  {
        forgetpass,
        enterNewPass,
        enterForgetOtp,
-       myCart
+       myCart,
+       profile,
+       payment
 }   = require('../controllers/user')
 
 router.use(bodyParser.json());
@@ -33,19 +35,29 @@ router.get('/signin',signin)
 router.get('/signup',signup)
 
 //get logout page
-router.get("/logout",logout)
-
+router.get("/logout",logout) 
 //get otp page
 router.get('/otpVerify',otpVerify)
 
 //get Otp Page for Forget Password
 router.get('/enterForgetOtp',enterForgetOtp)
 
-router.get('/forgetPassword',forgetpass)
+//get foreget password page
+router.get('/forgetPassword',forgetpass) 
 
+//get enterNew password Page
 router.get('/enterNewPass',enterNewPass)
 
-router.get('/myCart',myCart)
+//get Cart page
+
+router.get('/myCart',checkForAuthenticationCookie("tocken"),myCart)
+
+//get payment page
+router.get('/payment',payment)
+
+
+//get Profile Page
+router.get('/editprofile',checkForAuthenticationCookie("tocken"),profile) 
 
 router.post('/signup', async (req,res)=>{
       const { fullname , email , password } = req.body;
@@ -304,7 +316,20 @@ router.post('/setNewPasswordLogout',async(req,res)=>{
 
 })
 
-
+router.post('/editProfile',checkForAuthenticationCookie("tocken"),async(req,res)=>{
+       const id  = req.user._id
+       const data ={
+       fullname:req.body.name,
+       email:req.body.email,
+       password:req.body.password
+      } 
+      await User.findByIdAndUpdate(id,{
+       fullname:data.fullname,
+       email:data.email,
+       password:data.password
+      })
+      return res.redirect('/home')
+})
 
 
 

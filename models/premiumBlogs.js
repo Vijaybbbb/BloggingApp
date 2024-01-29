@@ -18,6 +18,10 @@ const blogSchema = new Schema({
               default:"ADMIN",
               
        },
+       price:{
+              type : String,
+              required : false
+       },
        has_access:{
               type:Boolean,
               default:false

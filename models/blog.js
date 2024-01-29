@@ -7,11 +7,12 @@ const blogSchema = new Schema({
        },
        subTitle : {
               type : String,
-              required : true
+              required : true 
        },
        type:{
               type : String,
-              required : true
+              required : true,
+              default:"Others"
        },
        body :{
               type : String,

@@ -33,6 +33,25 @@ router.get('/myBlogs', checkForAuthenticationCookie("tocken") , async (req, res)
        }
 });
 
+router.get('/:id',checkForAuthenticationCookie("tocken"),async (req,res)=>{
+       
+       const blog = await Blog.findById(req.params.id).populate("createdBy")
+       const comments  = await Comment.find({blogId : req.params.id}).populate("createdBy")
+       console.log(comments);
+       return res.render("blog",{
+              user:req.user,
+              title:blog.title,
+              image:blog.coverImageURL,
+              body:blog.body,
+              userimage: blog.createdBy.profileImageURL, 
+              username: blog.createdBy.fullname,
+              blog:blog,
+              comments
+       })
+
+})
+
+
 
 const uploadDir = path.resolve('./public/uploads/');
 
@@ -58,7 +77,7 @@ router.post('/',checkForAuthenticationCookie("tocken"),upload.single('coverImage
        const blog = {
               body,
               title,
-              type:selectBox
+              type:selectBox,
               subTitle,
               createdBy:req.user._id,
               coverImageURL:`/uploads/${req.file.filename}`
@@ -69,23 +88,6 @@ router.post('/',checkForAuthenticationCookie("tocken"),upload.single('coverImage
 
 })
 
-router.get('/:id',checkForAuthenticationCookie("tocken"),async (req,res)=>{
-       
-       const blog = await Blog.findById(req.params.id).populate("createdBy")
-       const comments  = await Comment.find({blogId : req.params.id}).populate("createdBy")
-       console.log(comments);
-       return res.render("blog",{
-              user:req.user,
-              title:blog.title,
-              image:blog.coverImageURL,
-              body:blog.body,
-              userimage: blog.createdBy.profileImageURL,
-              username: blog.createdBy.fullname,
-              blog:blog,
-              comments
-       })
-
-})
 
 
 router.post('/comment/:blogID',checkForAuthenticationCookie("tocken"),async (req,res)=>{

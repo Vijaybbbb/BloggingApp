@@ -44,10 +44,29 @@ app.use(cookieParser('your-secret-key'));
 
 
 app.get("/home",checkForAuthenticationCookie("tocken"),async (req,res)=>{
+
        const allBlogs = await Blog.find({}).populate("createdBy")
+       const timeAgo = (createdAt) => {
+              const now = new Date();
+              const createdDate = new Date(createdAt);
+              const timeDifference = now - createdDate;
+              const hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
+          
+              if (hoursAgo === 0) {
+                return "Just now";
+              } else if(hoursAgo<24) {
+                return `${hoursAgo} ${hoursAgo === 1 ? 'hour' : 'hours'} ago`;
+              }
+              else{
+                 const days = Math.floor(hoursAgo/24)
+                 return `${days} ${days === 1 ? 'day' : 'days'} ago`   
+              }
+            };
+          
        res.render('home',{
-              user:req.user,  
+              user:req.user ,
               blogs:allBlogs,
+              timeAgo
               
        })
        

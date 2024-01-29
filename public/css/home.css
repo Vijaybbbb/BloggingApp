@@ -138,3 +138,8 @@ p {
 .headh2{
   
 }
+.user__image {
+  border-radius: 50%;
+  width: 27px;
+  height: 30px;
+}

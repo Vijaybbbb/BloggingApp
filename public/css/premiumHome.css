@@ -111,4 +111,8 @@ background: linear-gradient(to bottom, #ef473a, #cb2d3e);
        grid-template-columns: repeat(3, 1fr); /* Create 3 columns with equal width */
        gap: 20px; /* Add some gap between the cards */
      }
-     
+     .user__image {
+      border-radius: 50%;
+      width: 27px;
+      height: 30px;
+  }

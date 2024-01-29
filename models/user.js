@@ -21,7 +21,7 @@ const userSchema =  new Schema({
        },
        profileImageURL:{
               type:String,
-              default:'../public/images/businessman-character-avatar-isolated_24877-60111.avif'
+              default:'uploads/download.png'
        },
        role:{
               type:String,

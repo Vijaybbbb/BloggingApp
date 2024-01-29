@@ -1,76 +1,4 @@
- <!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-       <%- include('./partials/head') %>
-       <title>Blog Page</title>
-       <link rel="stylesheet" href="/css/blogView.css">
 
-</head>
-<body>
-       <%- include('./partials/nav') %>
-       
-     <div class="container mt-4">
-           
-           <h2><%= title %></h2> <br>
-           <img src="<%= image %>" alt="" width="700px"> <br>
-           <div class="container mt-3 blogcontent" ><%= body %></div>
-       </div>
-       <div class="container mt-4">
-             
-       </div>
-
-       
-
-<div class="container mt-3">
-       <div class="comments-section">
-           <h3>Comments (<%= comments.length %>)</h3>
-   
-           <% if(locals.user ){  %>
-               <form action="/blog/comment/<%= blog._id %>" method="POST"> 
-                   <div class="mb-3">
-                       <input type="text" 
-                           class="form-control" 
-                           placeholder="Enter Your Comment"
-                           name="content" 
-                           aria-describedby="emailHelp"
-                           required="true"
-                       ><br>
-                       <button type="submit" class="btn btn-sm btn-primary">Add</button>
-                   </div>
-               </form>
-           <% } %>  
-   
-           <div class="comment-list mt-3">
-               <% comments.forEach(comment => { %>
-                   <div class="comment">
-                       
-                       <img src="../public/images/user_icon.png" alt="" class="profile-pic">
-                       <div class="comment-content">
-                           <span class="commenter-name"><%= comment.createdBy.fullname  %></span>
-                           <pre><%= comment.content %></pre>
-                       </div>
-                   </div>
-               <% }); %>
-           </div>
-       </div>
-   </div>
-   
-   
-   
-
-       </div>
-       
-          
-       <%- include('./partials/scripts') %>
-
-</body>
-</html> 
-
-
-
-
-
- -->
  <html lang="en">
     <head>
       <title>View Blog</title>
@@ -91,11 +19,6 @@
   
       <div class="navbar">
         <a href="/admin/editBlog?id=<%= blog._id %>">Edit blog</a>
-        <a href="#">Edit Image</a>
-        <a href="#">Edit Content</a>
-        <a href="#">Edit Comments</a>
-        <a href="#">share</a>
-      
       </div>
     
       <!-- Slideshow HTML -->
@@ -139,7 +62,7 @@
       
   <div class="header">
     <hr class="dashed">
-        <h2>WELCOME!</h2>
+        <h2>Read Below</h2>
     <hr class="dashed"> 
       </div>
   <div class="introduction">
@@ -147,71 +70,26 @@
     </div>
   <hr class="dashed">
       
-     <!-- country Flip boxes - Germany --> 
-   <div class="row">
-    <div class="column">  
-     <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png" alt="Germany" style="width:300px;height:200px;">
-      </div>
-      <div class="flip-card-back">
-        <h1>Germany</h1>
-        <p>Capital City : Berlin</p>
-        <p>Population : 3.645 million</p>
-      </div>
-    </div>
+    
+  
   </div>
   </div>
       
-      <!-- country Flip boxes - Ireland --> 
-    <div class="column">
-     <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/383px-Flag_of_Ireland.svg.png" alt="Ireland" style="width:300px;height:200px;">
-      </div>
-      <div class="flip-card-back">
-        <h1>Ireland</h1>
-        <p>Capital City : Dublin</p>
-        <p>Population : 4.995 million</p>
-      </div>
-    </div>
+     
+   
   </div>
   </div>   
      
-      <!-- country Flip boxes - Spain --> 
-     <div class="column">
-     <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/1125px-Flag_of_Spain.svg.png?20140922091435" alt="Spain" style="width:300px;height:200px;">
-      </div>
-      <div class="flip-card-back">
-        <h1>Spain</h1>
-        <p>Capital City : Madrid</p>
-        <p>Population : 47.35 million</p>
-      </div>
-    </div>
+       
+    
   </div>
   </div>    
-      <!-- country Flip boxes - Ukraine --> 
-     <div class="column">
-     <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img src="https://www.countryflags.com/wp-content/uploads/ukraine-flag-png-large.png" alt="Ukraine" style="width:300px;height:200px;">
-      </div>
-      <div class="flip-card-back">
-        <h1>Ukraine</h1>
-        <p>Capital City : Kyiv</p>
-        <p>Population : 44.13 million</p>
-      </div>
-    </div>
+      
+    
   </div>
   </div>    
-  <hr class="dashed">   
-     <!-- social media links -->
+    
+   
       
       <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
