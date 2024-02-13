@@ -33,6 +33,12 @@ router.get('/myBlogs', checkForAuthenticationCookie("tocken") , async (req, res)
        }
 });
 
+router.get('/addnew',checkForAuthenticationCookie("tocken"),(req,res)=>{
+       return res.render('addBlog',{
+              user:req.user
+       })
+})
+
 router.get('/:id',checkForAuthenticationCookie("tocken"),async (req,res)=>{
        
        const blog = await Blog.findById(req.params.id).populate("createdBy")
@@ -67,11 +73,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage})
 
-router.get('/addnew',checkForAuthenticationCookie("tocken"),(req,res)=>{
-       return res.render('addBlog',{
-              user:req.user
-       })
-})
+
 router.post('/',checkForAuthenticationCookie("tocken"),upload.single('coverImage'),async (req,res)=>{
        const {title ,subTitle, selectBox , body } = req.body
        const blog = {

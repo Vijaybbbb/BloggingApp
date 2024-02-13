@@ -90,7 +90,7 @@ const deleteComment = async(req,res) =>{
 
 const editBlog = async(req,res)=>{
        const id = req.query.id
-       const blog = await Blog.findById(id)
+       const blog = await Blog.findById(id)  
        console.log(blog);
        res.render('admin/editBlog',{
             blog:blog

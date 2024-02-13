@@ -36,7 +36,7 @@ router.get('/userBlogs',userBlogs)
 router.get('/viewBlog',viewBlog)
 
 //delete Comments
-router.get('/deleteComment',deleteComment) 
+router.get('/deleteComment',deleteComment)  
 
 
 //get admin signin Page  
@@ -49,7 +49,7 @@ router.get("/adminAddBlog",addBlog)
 router.get('/home',Dashboard) 
 
 //get edit blog page
-router.get('/editBlog',editBlog)
+router.get('/editBlog',editBlog) 
 
 router.get('/createPremiumBlog',createPremiumBlog)
 
@@ -105,7 +105,7 @@ router.get('/:id',async (req,res)=>{
 
 
 
-router.post('/signin',async(req,res)=>{
+router.post('/signin',async(req,res)=>{ 
        const {  email , password } = req.body;
        try {
               const adminFind = await User.findOne({email:email})
@@ -122,7 +122,7 @@ router.post('/signin',async(req,res)=>{
                             req.session.admin = req.body.fullname;
                             res.cookie('tocken',tocken).redirect('/home') 
                              }
-                             else{
+                             else{ 
                                    return  res.status(401).render("admin/adminSignin", {error: 'Invalid creadentials'})    
                             }    
                      }

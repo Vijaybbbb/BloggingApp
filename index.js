@@ -44,7 +44,7 @@ app.use(cookieParser('your-secret-key'));
 
 
 app.get("/home",checkForAuthenticationCookie("tocken"),async (req,res)=>{
-
+       console.log(req.user);
        const allBlogs = await Blog.find({}).populate("createdBy")
        const timeAgo = (createdAt) => {
               const now = new Date();
@@ -84,6 +84,6 @@ app.use('/blog',blogRouter)
 app.use('/premium',premiumBlogRouter)
 app.use("/admin",adminRouter)
 
-app.listen(PORT,()=>{
-       console.log('Server Started at http://localhost:8000/user/signup');
+app.listen(PORT,()=>{ 
+       console.log('Server Started at http://localhost:8000');
 })

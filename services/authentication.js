@@ -13,8 +13,19 @@ const JWT = require('jsonwebtoken');
  }
 
  function validateTocken(tocken){  
-       const payload = JWT.verify(tocken,secret);
-       return payload;
+      //  const payload = JWT.verify(tocken,secret,(error,user)=>{
+      //       console.log(user);
+      //  });
+      //  return payload;
+
+      try {
+            const payload = JWT.verify(tocken, secret);
+            return payload;
+        } catch (error) {
+            console.error("Token verification error:", error); 
+            throw new Error("Invalid token");
+        }
+
  }
 
  module.exports = {

@@ -15,7 +15,9 @@ function checkForAuthenticationCookie(cookieName) {
             try {
                 
                 const userPayload = validateTocken(tokenCookieValue);
+                
                 req.user = userPayload;
+                
                 // Move to the next middleware or route handler
                 next();
             } catch (error) {
