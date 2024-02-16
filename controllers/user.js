@@ -90,6 +90,7 @@ const myCart = async (req, res) => {
 const profile = async(req,res)=>{
        const id = req.user._id
        const user =  await User.findById(id)
+
        res.render('profile',{
           user:user    
        })

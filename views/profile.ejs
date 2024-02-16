@@ -52,7 +52,7 @@ body {
                   <img src="<%= user.profileImageURL %>" alt="Texto Alternativo" class="img-circle img-thumbnail" style=" border-radius: 50%;
                   width: 176px;
                   height: 170px;">
-                  <h2>Gopinath Perumal</h2>
+                  <h2><%= user.fullname %> </h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua.</p>
                           <div class="btn-group">
@@ -82,7 +82,7 @@ body {
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
-                          <input type="text" name="name" id="first_name" class="form-control input-lg" placeholder="<%= user.fullname %>" tabindex="1">
+                          <input type="text" name="name" id="first_name" class="form-control input-lg" value="<%= user.fullname %>" tabindex="1">
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
@@ -90,12 +90,12 @@ body {
           </div>
         </div>
         <div class="form-group">
-          <input type="email" name="email" id="email" class="form-control input-lg" placeholder="<%= user.email %>" tabindex="4">
+          <input type="email" name="email" id="email" class="form-control input-lg" value="<%= user.email %>" tabindex="4">
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
-              <input type="password" name="password" id="password" class="form-control input-lg" placeholder="<%= user.password %>" tabindex="5">
+              <!-- <input type="password" name="password" id="password" class="form-control input-lg" value="<%= user.password %>" tabindex="5"> -->
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
